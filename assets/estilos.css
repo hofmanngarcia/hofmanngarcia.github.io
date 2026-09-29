@@ -385,6 +385,10 @@ main,.barra,.regla{position:relative;z-index:2}
 
 /* ------------------------------------------------------------ movimiento reducido */
 @media (prefers-reduced-motion:reduce){
-  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
-  .metodo__pista{flex-wrap:wrap;width:auto}
+  .bajar__linea{animation:none}
+  /* modo suave: el método se lee como grilla, sin pista horizontal */
+  .metodo__pista{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));align-items:start;width:auto;
+    min-height:0;padding-top:var(--banda);padding-bottom:var(--banda);gap:40px clamp(20px,2.4vw,40px);max-width:var(--ancho);margin:0 auto}
+  .metodo__cabeza{grid-column:1/-1;width:auto;max-width:760px}
+  .paso{width:auto}
 }

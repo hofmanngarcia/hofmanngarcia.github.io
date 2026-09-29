@@ -143,7 +143,7 @@ export function crearRed(canvas, capa, { reducido = false } = {}) {
   });
 
   /* --------------------------------------------------------- estado */
-  let progreso = reducido ? 1 : 0, aparicion = reducido ? 1 : 0, corrimiento = 0, compresion = 1, angosto = false;
+  let progreso = 0, aparicion = 0, corrimiento = 0, compresion = 1, angosto = false;
   const disperso = new THREE.Vector3();
   const raton = { nx: 0, ny: 0, sx: 0, sy: 0, px: -999, py: -999, dentro: false };
   let foco = -1, alFoco = () => {}, visible = true, corriendo = true;
@@ -178,7 +178,7 @@ export function crearRed(canvas, capa, { reducido = false } = {}) {
     if (!corriendo) return;
     requestAnimationFrame(cuadro);
     if (!visible) return;
-    const t = reducido ? 12 : reloj.getElapsedTime();
+    const t = reloj.getElapsedTime();
     const p = suave(0, 1, progreso);
     const ap = aparicion;
     raton.sx += (raton.nx - raton.sx) * 0.05;
@@ -186,8 +186,9 @@ export function crearRed(canvas, capa, { reducido = false } = {}) {
 
     // cámara: leve paralaje, y el conjunto corrido a la derecha en pantallas anchas
     grupo.position.x = angosto ? -0.28 : corrimiento * (reducido ? 1.3 : 1 - p * 0.75);
-    grupo.rotation.y = (reducido ? 0 : Math.sin(t * 0.08) * 0.22) + raton.sx * 0.18;
-    grupo.rotation.x = -raton.sy * 0.1;
+    // en modo suave no hay vaivén ni paralaje: la red queda en su lugar y solo circulan los datos
+    grupo.rotation.y = reducido ? 0 : Math.sin(t * 0.08) * 0.22 + raton.sx * 0.18;
+    grupo.rotation.x = reducido ? 0 : -raton.sy * 0.1;
     camara.lookAt(0, 0, 0);
 
     // nodos

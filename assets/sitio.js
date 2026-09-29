@@ -4,6 +4,9 @@
  * defer, que se ejecutan antes que este módulo.
  */
 const { gsap, ScrollTrigger, SplitText, Lenis } = window;
+// "Reducir movimiento" (Windows con las animaciones apagadas, muy común en equipos de oficina):
+// modo suave. Se quitan el scroll suavizado, las secciones fijas y los desplazamientos grandes,
+// pero la red sigue viva y los textos aparecen con un fundido.
 const reducido = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const puntero = matchMedia('(pointer: fine)').matches;
 const $ = (s, c = document) => c.querySelector(s);
@@ -70,10 +73,10 @@ async function prepararRed() {
   try {
     const gl = canvas.getContext('webgl2') || canvas.getContext('webgl');
     if (!gl) throw new Error('sin webgl');
-    const mod = await import('./red.js?v=2');
+    const mod = await import('./red.js?v=3');
     red = mod.crearRed(canvas, $('.red-capa'), { reducido });
     red.alFoco(mostrarSistema);
-    if (introHecha) red.aparecer(1);
+    if (introHecha) { red.aparecer(1); if (reducido) red.progreso(1); }
   } catch (err) {
     canvas.style.display = 'none';      // sin WebGL el sitio se lee igual, sobre fondo liso
   }
@@ -88,7 +91,7 @@ function avisarRaton() {
   if (!red || !ultimo.hay) return;
   red.raton((ultimo.x / innerWidth) * 2 - 1, -(ultimo.y / innerHeight) * 2 + 1, enPortada && !ultimo.sobre, ultimo.x, ultimo.y);
 }
-if (puntero && !reducido) {
+if (puntero) {
   document.body.classList.add('cursor-propio');
   const mx = gsap.quickTo(cursor, 'x', { duration: 0.18, ease: 'power3' });
   const my = gsap.quickTo(cursor, 'y', { duration: 0.18, ease: 'power3' });
@@ -202,7 +205,18 @@ function registrarSecciones() {
 
 /* ------------------------------------------------------------ portada: de sistemas aislados a una red */
 function coreografiaPortada() {
-  if (reducido) return;
+  if (reducido) {
+    // modo suave: la red se conecta sola, sin fijar la portada al hacer scroll
+    gsap.to({ v: 0 }, { v: 1, duration: 3.4, delay: 1.4, ease: 'power1.inOut', onUpdate() { red?.progreso(this.targets()[0].v); } });
+    gsap.to('#red, .red-capa', { opacity: 0.12, ease: 'none', scrollTrigger: { trigger: '.metodo', start: 'top bottom', end: 'top 30%', scrub: true } });
+    gsap.to('.red-capa', { autoAlpha: 0, scrollTrigger: { trigger: '.metodo', start: 'top 60%', toggleActions: 'play none none reverse' } });
+    ScrollTrigger.create({ trigger: '.servicios', start: 'top 60%', onEnter: () => red?.pausar(true), onLeaveBack: () => red?.pausar(false) });
+    ScrollTrigger.create({
+      trigger: '.portada', start: 'top top', end: 'bottom 40%',
+      onLeave: () => { enPortada = false; avisarRaton(); }, onEnterBack: () => { enPortada = true; avisarRaton(); },
+    });
+    return;
+  }
   const tl = gsap.timeline({
     scrollTrigger: {
       trigger: '.portada', start: 'top top', end: '+=150%', pin: true, scrub: 0.6,
@@ -243,7 +257,11 @@ function coreografiaMetodo() {
     trazos.forEach((p) => { const L = p.getTotalLength ? p.getTotalLength() : 400; p.style.strokeDasharray = L; p.style.strokeDashoffset = L; });
     return gsap.to(trazos, { strokeDashoffset: 0, duration: 1.4, ease: 'power2.inOut', stagger: 0.12, ...opciones });
   };
-  if (reducido) return;
+  if (reducido) {
+    // modo suave: los pasos se leen en vertical y sus dibujos se trazan al aparecer
+    dibujos.forEach((svg) => trazar(svg, { scrollTrigger: { trigger: svg, start: 'top 85%' } }));
+    return;
+  }
   const mm = gsap.matchMedia();
   mm.add('(min-width: 901px)', () => {
     const recorrido = () => pista.scrollWidth - innerWidth;
@@ -260,8 +278,23 @@ function coreografiaMetodo() {
 }
 
 /* ------------------------------------------------------------ títulos y apariciones */
+function trazarLaminas() {
+  $$('.lamina__dibujo svg').forEach((svg) => {
+    const trazos = $$('path,rect,circle,ellipse', svg);
+    trazos.forEach((p) => { const L = p.getTotalLength(); p.style.strokeDasharray = L; p.style.strokeDashoffset = L; });
+    gsap.to(trazos, { strokeDashoffset: 0, duration: 1.6, ease: 'power2.inOut', stagger: 0.1, scrollTrigger: { trigger: svg, start: 'top 85%' } });
+  });
+}
 function coreografiaTextos() {
-  if (reducido) return;
+  if (reducido) {
+    // modo suave: solo fundidos, sin desplazar nada
+    $$('.titulo-seccion, .contacto__titulo, .entrada, .rotulo, .laboratorio__pie, .contacto__correo, .empresas__pie').forEach((el) =>
+      gsap.from(el, { opacity: 0, duration: 0.9, ease: 'power1.out', scrollTrigger: { trigger: el, start: 'top 90%' } }));
+    $$('.lista-servicios, .laminas, .ofertas, .modalidades, .ficha').forEach((g) =>
+      gsap.from(g.children, { opacity: 0, duration: 0.8, stagger: 0.08, scrollTrigger: { trigger: g, start: 'top 88%' } }));
+    trazarLaminas();
+    return;
+  }
   $$('.titulo-seccion, .contacto__titulo').forEach((h) => {
     const sp = SplitText.create(h, { type: 'lines', mask: 'lines', linesClass: 'sp-linea' });
     gsap.from(sp.lines, { yPercent: 105, duration: 1.1, ease: 'expo.out', stagger: 0.09, scrollTrigger: { trigger: h, start: 'top 85%' } });
@@ -269,12 +302,7 @@ function coreografiaTextos() {
   $$('.entrada, .rotulo, .laboratorio__pie').forEach((el) => gsap.from(el, { opacity: 0, y: 24, duration: 1, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 88%' } }));
   gsap.from('.servicio', { opacity: 0, y: 30, duration: 0.9, ease: 'power3.out', stagger: 0.08, scrollTrigger: { trigger: '.lista-servicios', start: 'top 80%' } });
   $$('.laminas, .ofertas, .modalidades').forEach((g) => gsap.from(g.children, { opacity: 0, y: 50, duration: 1, ease: 'power3.out', stagger: 0.1, scrollTrigger: { trigger: g, start: 'top 82%' } }));
-  // los dibujos de cada lámina se trazan al aparecer
-  $$('.lamina__dibujo svg').forEach((svg) => {
-    const trazos = $$('path,rect,circle,ellipse', svg);
-    trazos.forEach((p) => { const L = p.getTotalLength(); p.style.strokeDasharray = L; p.style.strokeDashoffset = L; });
-    gsap.to(trazos, { strokeDashoffset: 0, duration: 1.6, ease: 'power2.inOut', stagger: 0.1, scrollTrigger: { trigger: svg, start: 'top 85%' } });
-  });
+  trazarLaminas();
   gsap.from('.ficha > div', { opacity: 0, duration: 0.6, stagger: 0.05, scrollTrigger: { trigger: '.ficha', start: 'top 85%' } });
   gsap.from('.contacto__correo', { opacity: 0, y: 40, duration: 1.1, ease: 'expo.out', scrollTrigger: { trigger: '.contacto__correo', start: 'top 90%' } });
   gsap.from('.pie__cajetin > div', { opacity: 0, y: 12, stagger: 0.06, duration: 0.7, scrollTrigger: { trigger: '.pie', start: 'top 95%' } });
@@ -289,25 +317,24 @@ async function iniciar() {
 
   const cuenta = { m: 0 };
   const intro = gsap.timeline();
-  if (!reducido) {
-    intro.to(trazosHG, { strokeDashoffset: 0, duration: 1.1, ease: 'power2.inOut', stagger: 0.12 }, 0)
-      .to(cuenta, { m: 9, duration: 1.4, ease: 'power2.inOut', onUpdate: () => { cifra.textContent = String(Math.round(cuenta.m)); } }, 0);
-  }
+  intro.to(trazosHG, { strokeDashoffset: 0, duration: 1.1, ease: 'power2.inOut', stagger: 0.12 }, 0)
+    .to(cuenta, { m: 9, duration: 1.4, ease: 'power2.inOut', onUpdate: () => { cifra.textContent = String(Math.round(cuenta.m)); } }, 0);
   // la entrada no espera más de 4 s: con una red lenta, el sitio aparece igual y la red se suma cuando llegue
   const espera = (ms) => new Promise((r) => setTimeout(r, ms));
   await Promise.race([Promise.all([listo, intro.then ? intro : Promise.resolve(), document.fonts?.ready]), espera(4000)]);
 
   const sp = reducido ? null : SplitText.create('.portada__titulo .linea', { type: 'words', wordsClass: 'palabra' });
   const salida = gsap.timeline({ onComplete: () => { document.body.classList.remove('cargando'); lenis?.start(); saltarAlAncla(); } });
-  salida.to('.cargador', { yPercent: -100, duration: reducido ? 0.01 : 1, ease: 'expo.inOut' });
+  salida.to('.cargador', reducido ? { autoAlpha: 0, duration: 0.6 } : { yPercent: -100, duration: 1, ease: 'expo.inOut' });
   if (!reducido) {
     salida.set('.cargador', { display: 'none' })
       .from(sp.words, { yPercent: 110, duration: 1.2, ease: 'expo.out', stagger: 0.06 }, '-=0.45')
       .from('.portada__bajada, .portada__acciones, .portada__arriba, .portada__abajo', { opacity: 0, y: 18, duration: 1, ease: 'power3.out', stagger: 0.08 }, '-=0.9')
       .fromTo({ v: 0 }, { v: 0 }, { v: 1, duration: 2.6, ease: 'power2.out', onUpdate() { red?.aparecer(this.targets()[0].v); }, onComplete() { introHecha = true; } }, '-=1.6');
   } else {
-    salida.set('.cargador', { display: 'none' });
-    introHecha = true;
+    salida.set('.cargador', { display: 'none' })
+      .from('.portada__titulo, .portada__bajada, .portada__acciones, .portada__arriba, .portada__abajo', { opacity: 0, duration: 1, stagger: 0.1 }, '-=0.2')
+      .fromTo({ v: 0 }, { v: 0 }, { v: 1, duration: 1.6, onUpdate() { red?.aparecer(this.targets()[0].v); }, onComplete() { introHecha = true; } }, '<');
   }
 
   coreografiaPortada();
