@@ -15,14 +15,13 @@
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..800&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@1,8..60,400;1,8..60,500&display=swap">
-<link rel="stylesheet" href="assets/estilos.css">
+<link rel="stylesheet" href="assets/estilos.css?v=2">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Organization","name":"Soluciones de Ingeniería Hofmann García SpA","alternateName":"Hofmann García","url":"https://sdihofmanngarcia.cl/","taxID":"78.492.109-3","email":"sdihofmanngarcia@gmail.com","telephone":["+56977939425","+56978160040"],"address":{"@type":"PostalAddress","streetAddress":"M. Rodríguez 0390, Oficina 304, Edificio Normandie","addressLocality":"Temuco","addressRegion":"La Araucanía","addressCountry":"CL"}}
 </script>
 <script type="importmap">
-{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.min.js"}}
+{"imports":{"three":"./assets/vendor/three.module.min.js"}}
 </script>
 </head>
 <body class="cargando">
@@ -372,10 +371,19 @@
   </section>
 </main>
 
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" defer></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js" defer></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js" defer></script>
-<script src="https://cdn.jsdelivr.net/npm/lenis@1.3.4/dist/lenis.min.js" defer></script>
-<script type="module" src="assets/sitio.js"></script>
+<!-- Librerías servidas desde el propio sitio: no dependen de un CDN que una red o un antivirus pueda bloquear -->
+<script src="assets/vendor/gsap.min.js" defer></script>
+<script src="assets/vendor/ScrollTrigger.min.js" defer></script>
+<script src="assets/vendor/SplitText.min.js" defer></script>
+<script src="assets/vendor/lenis.min.js" defer></script>
+<script>
+  /* Red de seguridad: si algo falla, la pantalla de carga nunca se queda pegada */
+  setTimeout(function () {
+    if (!document.body.classList.contains('cargando')) return;
+    document.body.classList.remove('cargando');
+    var c = document.querySelector('.cargador'); if (c) c.style.display = 'none';
+  }, 7000);
+</script>
+<script type="module" src="assets/sitio.js?v=2"></script>
 </body>
 </html>

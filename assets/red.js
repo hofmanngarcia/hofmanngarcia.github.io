@@ -155,7 +155,8 @@ export function crearRed(canvas, capa, { reducido = false } = {}) {
     camara.aspect = W / H;
     camara.position.set(0, 0, W / H < 0.9 ? 7.6 : 6.4);
     // en pantallas angostas la red se achica para caber completa a lo ancho
-    grupo.scale.setScalar(W / H < 0.9 ? Math.max(0.5, (W / H) / 0.82) : 1);
+    // sin animaciones la red se muestra ya conectada: más chica y a la derecha, para no tapar el titular
+    grupo.scale.setScalar(W / H < 0.9 ? Math.max(0.5, (W / H) / 0.82) : reducido ? 0.72 : 1);
     // en pantallas anchas los sistemas aislados se agrupan a la derecha, lejos del titular
     corrimiento = W / H > 1.25 ? 1.0 : 0;
     compresion = W / H > 1.25 ? 0.6 : W / H < 0.9 ? 0.72 : 1;
@@ -184,7 +185,7 @@ export function crearRed(canvas, capa, { reducido = false } = {}) {
     raton.sy += (raton.ny - raton.sy) * 0.05;
 
     // cámara: leve paralaje, y el conjunto corrido a la derecha en pantallas anchas
-    grupo.position.x = angosto ? -0.28 : corrimiento * (1 - p * 0.75);
+    grupo.position.x = angosto ? -0.28 : corrimiento * (reducido ? 1.3 : 1 - p * 0.75);
     grupo.rotation.y = (reducido ? 0 : Math.sin(t * 0.08) * 0.22) + raton.sx * 0.18;
     grupo.rotation.x = -raton.sy * 0.1;
     camara.lookAt(0, 0, 0);

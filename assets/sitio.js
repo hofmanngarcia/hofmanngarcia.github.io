@@ -9,6 +9,12 @@ const puntero = matchMedia('(pointer: fine)').matches;
 const $ = (s, c = document) => c.querySelector(s);
 const $$ = (s, c = document) => [...c.querySelectorAll(s)];
 
+if (!gsap || !ScrollTrigger || !SplitText) {
+  // sin librerías de animación el sitio se muestra quieto, pero completo
+  document.body.classList.remove('cargando');
+  document.querySelector('.cargador').style.display = 'none';
+  throw new Error('No cargaron las librerías de animación');
+}
 gsap.registerPlugin(ScrollTrigger, SplitText);
 // el salto a un #ancla lo hacemos nosotros cuando las secciones fijas ya están armadas
 const anclaInicial = location.hash.length > 1 ? location.hash : null;
@@ -58,14 +64,16 @@ $('.pie__anio').textContent = new Date().getFullYear();
 
 /* ------------------------------------------------------------ la red de sistemas */
 let red = null;
+let introHecha = false;   // si la red llega tarde, aparece de inmediato
 async function prepararRed() {
   const canvas = $('#red');
   try {
     const gl = canvas.getContext('webgl2') || canvas.getContext('webgl');
     if (!gl) throw new Error('sin webgl');
-    const mod = await import('./red.js');
+    const mod = await import('./red.js?v=2');
     red = mod.crearRed(canvas, $('.red-capa'), { reducido });
     red.alFoco(mostrarSistema);
+    if (introHecha) red.aparecer(1);
   } catch (err) {
     canvas.style.display = 'none';      // sin WebGL el sitio se lee igual, sobre fondo liso
   }
@@ -285,7 +293,9 @@ async function iniciar() {
     intro.to(trazosHG, { strokeDashoffset: 0, duration: 1.1, ease: 'power2.inOut', stagger: 0.12 }, 0)
       .to(cuenta, { m: 9, duration: 1.4, ease: 'power2.inOut', onUpdate: () => { cifra.textContent = String(Math.round(cuenta.m)); } }, 0);
   }
-  await Promise.all([listo, intro.then ? intro : Promise.resolve(), document.fonts?.ready]);
+  // la entrada no espera más de 4 s: con una red lenta, el sitio aparece igual y la red se suma cuando llegue
+  const espera = (ms) => new Promise((r) => setTimeout(r, ms));
+  await Promise.race([Promise.all([listo, intro.then ? intro : Promise.resolve(), document.fonts?.ready]), espera(4000)]);
 
   const sp = reducido ? null : SplitText.create('.portada__titulo .linea', { type: 'words', wordsClass: 'palabra' });
   const salida = gsap.timeline({ onComplete: () => { document.body.classList.remove('cargando'); lenis?.start(); saltarAlAncla(); } });
@@ -294,9 +304,10 @@ async function iniciar() {
     salida.set('.cargador', { display: 'none' })
       .from(sp.words, { yPercent: 110, duration: 1.2, ease: 'expo.out', stagger: 0.06 }, '-=0.45')
       .from('.portada__bajada, .portada__acciones, .portada__arriba, .portada__abajo', { opacity: 0, y: 18, duration: 1, ease: 'power3.out', stagger: 0.08 }, '-=0.9')
-      .fromTo({ v: 0 }, { v: 0 }, { v: 1, duration: 2.6, ease: 'power2.out', onUpdate() { red?.aparecer(this.targets()[0].v); } }, '-=1.6');
+      .fromTo({ v: 0 }, { v: 0 }, { v: 1, duration: 2.6, ease: 'power2.out', onUpdate() { red?.aparecer(this.targets()[0].v); }, onComplete() { introHecha = true; } }, '-=1.6');
   } else {
     salida.set('.cargador', { display: 'none' });
+    introHecha = true;
   }
 
   coreografiaPortada();
