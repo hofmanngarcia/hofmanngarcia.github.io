@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Diagnóstico del sitio</title>
+<style>
+  body{margin:0;background:#0c1012;color:#E9ECE9;font:16px/1.5 system-ui,Segoe UI,Arial,sans-serif;padding:24px}
+  h1{font-size:22px;margin:0 0 6px}
+  p{color:#AAB4B0;margin:0 0 20px}
+  table{border-collapse:collapse;width:100%;max-width:760px}
+  td{border-top:1px solid #2a3437;padding:10px 8px;vertical-align:top}
+  td:first-child{color:#AAB4B0;width:45%}
+  .ok{color:#6FCFD2}.mal{color:#ff8a7a;font-weight:600}
+  code{font-size:12px;color:#AAB4B0;word-break:break-all}
+</style>
+</head>
+<body>
+<h1>Diagnóstico del sitio</h1>
+<p>Saque una captura de esta página y envíela. No guarda ni envía nada.</p>
+<table id="t"></table>
+<script>
+  var filas = [];
+  function fila(n, v, ok) { filas.push('<tr><td>' + n + '</td><td class="' + (ok ? 'ok' : 'mal') + '">' + v + '</td></tr>'); }
+  var ua = navigator.userAgent;
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  fila('Animaciones del sistema', reduce ? 'DESACTIVADAS (el sitio se muestra quieto a propósito)' : 'activadas', !reduce);
+  var gl = null, renderer = '-';
+  try {
+    var c = document.createElement('canvas');
+    gl = c.getContext('webgl2') || c.getContext('webgl');
+    if (gl) { var d = gl.getExtension('WEBGL_debug_renderer_info'); renderer = d ? gl.getParameter(d.UNMASKED_RENDERER_WEBGL) : 'sí'; }
+  } catch (e) {}
+  fila('Gráficos 3D (WebGL)', gl ? 'disponible · ' + renderer : 'NO disponible (aceleración gráfica apagada o bloqueada)', !!gl);
+  var soft = /SwiftShader|llvmpipe|Software|Basic Render/i.test(renderer);
+  if (gl) fila('Aceleración por hardware', soft ? 'NO: dibuja por software, puede ir muy lento' : 'sí', !soft);
+  var im = HTMLScriptElement.supports && HTMLScriptElement.supports('importmap');
+  fila('Navegador moderno (import maps)', im ? 'sí' : 'NO: navegador antiguo, hay que actualizarlo', !!im);
+  fila('Tamaño de ventana', innerWidth + ' × ' + innerHeight + ' px · zoom ' + Math.round(devicePixelRatio * 100) + ' %', true);
+  function probar(url, nombre) {
+    return fetch(url, { cache: 'no-store' }).then(function (r) { fila('Descarga de ' + nombre, r.ok ? 'bien (' + r.status + ')' : 'FALLA (' + r.status + ')', r.ok); })
+      .catch(function () { fila('Descarga de ' + nombre, 'BLOQUEADA (antivirus, red o extensión)', false); });
+  }
+  Promise.all([
+    probar('assets/vendor/gsap.min.js', 'animaciones (GSAP)'),
+    probar('assets/vendor/three.module.min.js', 'gráficos 3D (three.js)'),
+    probar('assets/sitio.js?v=2', 'script del sitio'),
+  ]).then(function () {
+    fila('Navegador', '<code>' + ua + '</code>', true);
+    document.getElementById('t').innerHTML = filas.join('');
+  });
+</script>
+</body>
+</html>
