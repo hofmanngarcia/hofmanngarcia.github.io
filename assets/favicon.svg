@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Hofmann Garcia">
+  <rect width="120" height="120" fill="#14646D"/>
+  <g transform="translate(13.2 37.1) scale(0.6367)" fill="none" stroke="#FFFFFF" stroke-width="12" stroke-linecap="butt" stroke-linejoin="miter">
+    <path d="M6 0V72"/>
+    <path d="M54 0V72"/>
+    <path d="M6 36H81"/>
+    <path d="M135 18A30 30 0 1 0 141 36H105"/>
+  </g>
+</svg>
