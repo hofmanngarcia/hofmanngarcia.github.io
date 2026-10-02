@@ -321,7 +321,7 @@ main,.barra,.regla{position:relative;z-index:2}
   border-bottom:2px solid var(--acento);padding-bottom:6px;word-break:break-all;transition:color .3s
 }
 .contacto__correo:hover{color:var(--acento-claro)}
-.contacto__datos{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;margin-top:clamp(50px,6vw,90px);padding-bottom:clamp(60px,8vw,110px)}
+.contacto__datos{display:grid;grid-template-columns:repeat(4,1fr);gap:30px;margin-top:clamp(50px,6vw,90px);padding-bottom:clamp(60px,8vw,110px)}
 .contacto__datos .mono{color:var(--tenue);margin-bottom:10px}
 .contacto__datos a{text-decoration:none}
 .contacto__datos a:hover{color:var(--acento-claro)}
