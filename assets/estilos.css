@@ -326,7 +326,7 @@ main,.barra,.regla{position:relative;z-index:2}
 .contacto__datos a{text-decoration:none}
 .contacto__datos a:hover{color:var(--acento-claro)}
 .pie{border-top:1px solid var(--regla-2)}
-.pie__cajetin{display:grid;grid-template-columns:1fr 2.4fr .7fr .9fr .7fr}
+.pie__cajetin{display:grid;grid-template-columns:1fr 2.4fr .7fr .9fr .7fr 1.1fr}
 .pie__cajetin div{padding:16px 16px 18px;border-right:1px solid var(--regla-2)}
 .pie__cajetin div:first-child{padding-left:0}
 .pie__cajetin div:last-child{border-right:0}
