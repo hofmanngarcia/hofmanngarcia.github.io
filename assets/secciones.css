@@ -1,0 +1,132 @@
+/* Recinto interactivo */
+.proyecto--cabanas .taller { grid-template-columns:minmax(0,1.5fr) minmax(310px,1fr); }
+.paisaje { padding:0; gap:0; justify-content:center; background:#17241e; }
+.paisaje .instrument-label { padding:12px 18px; color:#c6d5ca; }
+.foto-recinto { display:block; width:100%; height:auto; aspect-ratio:3/2; }
+.pin-cabana { min-width:35px; height:26px; justify-content:center; padding:3px 6px; border:1px solid #ecf3e5; background:#14271dee; color:white; font:600 12px/1 var(--mono)!important; transform:translate(-50%,-50%); }
+.pin-cabana::before,.pin-cabana::after { display:none; }
+.pin-cabana.sin-cupo { background:#553b31; }
+.pin-cabana[aria-pressed=true] { background:#ffe2a9; color:#241e13; border-color:white; outline:2px solid #243125; }
+.selector-cabana { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:8px; color:var(--tinta-2); font-size:13px; }
+.selector-cabana select { border:1px solid #536d60; padding:7px 12px; border-radius:4px; background:#1d2c25; color:#eff6eb; font:500 14px var(--titular); }
+
+/* Hoja de cotización y plantillas */
+.proyecto--gestion .mesa-documento { display:flex; flex-direction:column; align-items:center; justify-content:center; padding:18px clamp(15px,3vw,38px) 30px; background:radial-gradient(ellipse at 40% 42%,#52625b,#28352f 74%); }
+.barra-documento { display:flex; width:100%; justify-content:space-between; padding:0 0 12px; border-bottom:1px solid #ffffff26; color:#d0dfd4; font:11px/1.5 var(--mono); }
+.estilos-doc { display:flex; justify-content:center; flex-wrap:wrap; gap:5px; padding:0; border:0; margin:12px 0 17px; }
+.estilos-doc legend { float:left; width:100%; text-align:center; margin-bottom:6px; font:10px/1.4 var(--mono); letter-spacing:.08em; text-transform:uppercase; color:#cad7cc; }
+.estilos-doc label { position:relative; cursor:pointer; }
+.estilos-doc input { position:absolute; opacity:0; }
+.estilos-doc span { display:block; border:1px solid #687b70; color:#d2ded4; padding:5px 11px; border-radius:16px; font-size:12px; }
+.estilos-doc input:checked + span { background:#eff5ea; color:#17231d; border-color:#eff5ea; }
+.estilos-doc input:focus-visible + span { outline:2px solid #a3ead2; outline-offset:2px; }
+.documento { --papel:#fcf8ef; --papel-acento:#915334; --filete:#b5a891; width:min(100%,350px); aspect-ratio:210 / 297; min-height:0; padding:22px 23px 18px; background:var(--papel); color:#25251f; border-top:0; box-shadow:0 2px 4px #0005,0 12px 28px #0004; display:flex; flex-direction:column; }
+.papel-membrete { display:flex; flex-direction:column; border-bottom:2px solid var(--papel-acento); padding-bottom:10px; margin-bottom:16px; color:var(--papel-acento); }
+.papel-membrete b { font:600 15px/1.3 var(--titular); letter-spacing:-.03em; }
+.papel-membrete span { font:9px/1.4 var(--titular); }
+.doc-cab { align-items:baseline; }
+.documento h4 { font:400 clamp(21px,2.4vw,32px)/1.1 Georgia,serif; }
+.papel-datos { margin:12px 0 18px; padding:8px 0; border-block:1px solid var(--filete); display:flex; justify-content:space-between; gap:8px; }
+.papel-datos small,.papel-datos b { display:block; font-size:11px; }
+.papel-datos small,.documento th { font:9px/1.4 var(--mono); color:#575b50; }
+.documento table { line-height:1.3; font-size:12px; }
+.documento td { border-bottom:1px solid #74746d30; }
+.documento .doc-total { color:var(--papel-acento); border-color:var(--filete); }
+.papel-pie { margin-top:auto; padding-top:12px; display:flex; flex-wrap:wrap; justify-content:space-between; gap:4px; font:9px/1.4 var(--mono); color:#555b52; }
+.papel-pie p { width:100%; margin-bottom:5px; padding-bottom:7px; border-bottom:1px solid var(--filete); }
+.documento[data-estilo=tecnico] { --papel:#f4f8fa; --papel-acento:#245577; --filete:#9eb1bd; border-left:8px solid var(--papel-acento); }
+.documento[data-estilo=tecnico] .papel-membrete { padding:10px; background:#214c68; color:#fff; border:none; }
+.documento[data-estilo=tecnico] h4 { font:700 clamp(20px,2vw,28px)/1.1 var(--mono); letter-spacing:-.07em; }
+.documento[data-estilo=tecnico] th { background:#d8e5eb; padding-block:6px; }
+.documento[data-estilo=clasico] { --papel:#fff; --papel-acento:#332e29; --filete:#8e8980; }
+.documento[data-estilo=clasico] .papel-membrete { text-align:center; border-bottom:3px double var(--filete); }
+.documento[data-estilo=clasico] .papel-membrete b { font:italic 21px Georgia,serif; }
+.documento[data-estilo=clasico] .doc-cab { flex-direction:column; align-items:center; gap:1px; }
+.documento[data-estilo=clasico] :is(td,.doc-total,.papel-datos) { font-family:Georgia,serif; }
+
+/* Método */
+.metodo-nuevo,.servicios-nuevos { padding-block:clamp(50px,6.5vw,98px); }
+.encuentro { display:grid; grid-template-columns:.83fr 1.17fr; margin-top:22px; overflow:hidden; border-radius:10px; background:#eae5d9; color:#252d24; }
+.encuentro__texto { align-self:center; padding:clamp(25px,3.3vw,52px); }
+.encuentro__texto .sobrelinea { color:#50644b; }
+.encuentro h2,.empresa-voz h2 { font-size:clamp(46px,5.3vw,85px); font-weight:500; line-height:.96; letter-spacing:-.06em; margin:18px 0 24px; }
+.encuentro em { color:#456044; }
+.encuentro__texto > p:last-child { line-height:1.55; max-width:38ch; }
+.encuentro img { width:100%; height:100%; min-height:320px; object-fit:cover; }
+.etapas { display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(15px,2.4vw,34px); margin-top:28px; }
+.etapas article { padding-top:14px; border-top:1px solid #4c5c52; }
+.etapas span,.especialidad__detalle h3,.rutas-empresa small { font:500 11px/1.5 var(--mono); letter-spacing:.08em; text-transform:uppercase; }
+.etapas span { color:#a9ccba; }
+.etapas h3 { margin:10px 0 8px; font-weight:500; font-size:clamp(21px,2.1vw,32px); line-height:1.12; letter-spacing:-.03em; }
+.etapas p,.especialidad__detalle p { color:var(--tinta-2); font-size:15px; line-height:1.55; }
+
+/* Especialidades */
+.servicios-nuevos { padding-top:clamp(38px,5vw,74px); }
+.catalogo-servicios { margin-top:28px; border-bottom:1px solid #42564b; }
+.especialidad { border-top:1px solid #42564b; }
+.especialidad summary { list-style:none; display:grid; grid-template-columns:1.15fr 1fr 36px; align-items:center; gap:18px; padding:clamp(18px,2vw,30px) clamp(12px,2vw,28px); cursor:pointer; }
+.especialidad summary::-webkit-details-marker { display:none; }
+.especialidad summary:hover { background:#19241d; }
+.especialidad__nombre { color:#e0eae3; font-size:clamp(24px,2.8vw,40px); font-weight:500; line-height:1.06; letter-spacing:-.04em; }
+.especialidad__bajada { max-width:36ch; color:#a9b9ac; font-size:15px; line-height:1.35; }
+.especialidad summary i { display:grid; place-items:center; width:34px; height:34px; border:1px solid #5b7362; border-radius:50%; color:#c4e8cc; }
+.especialidad summary i::before { content:"+"; font:20px var(--mono); }
+.especialidad[open] summary i::before { content:"−"; }
+.especialidad[open] { background:#192820; }
+.especialidad[open] .especialidad__nombre { color:#bde6cb; }
+.especialidad__detalle { display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(16px,3vw,42px); padding:8px clamp(12px,2vw,28px) 28px; }
+.especialidad__detalle > div { border-top:1px solid #3d5444; padding-top:12px; }
+.especialidad__detalle h3 { color:#d0e6d3; margin-bottom:7px; }
+
+/* Empresas */
+.empresa-nueva { background:#c5ddc9; color:#152c21; }
+.empresa-interior { padding-block:clamp(45px,6vw,85px); display:grid; grid-template-columns:1fr 1fr; align-items:start; gap:32px 8%; }
+.empresa-voz .origen { color:#345442; }
+.empresa-voz .origen i { background:#345e44; }
+.empresa-voz h2 { font-size:clamp(48px,5.8vw,89px); }
+.empresa-voz em { color:#41654b; }
+.empresa-voz > p:not(.origen) { max-width:36ch; }
+.empresa-voz .boton { margin-top:22px; background:#183929; color:white; font-size:14px; }
+.empresa-voz .boton:hover { color:#183929; }
+.rutas-empresa article { padding:18px 0; border-top:1px solid #789682; }
+.rutas-empresa small { color:#3c5e47; }
+.rutas-empresa h3 { font-size:clamp(22px,2vw,32px); line-height:1.15; margin:6px 0 8px; letter-spacing:-.035em; }
+.rutas-empresa p { max-width:50ch; color:#344e3d; font-size:15px; }
+.rutas-empresa a { display:inline-block; padding:7px 0 2px; font-size:14px; font-weight:600; text-underline-offset:4px; }
+.empresa-condiciones { grid-column:1/-1; padding-top:17px; border-top:1px solid #829e8b; font-size:13px; color:#385341; }
+@media(max-width:800px) {
+ .proyecto--cabanas .taller,.encuentro,.empresa-interior { grid-template-columns:1fr; }
+ .encuentro img { min-height:0; height:auto; }
+ .encuentro__texto { padding:25px; }
+ .etapas { grid-template-columns:1fr; gap:18px; }
+ .etapas article { max-width:65ch; }
+ .especialidad summary { grid-template-columns:1fr 34px; gap:7px 10px; }
+ .especialidad__bajada { grid-column:1; }
+ .especialidad summary i { grid-column:2; grid-row:1 / 3; }
+ .especialidad__detalle { grid-template-columns:1fr; }
+ .empresa-voz h2 br { display:none; }
+ .empresa-voz h2 br::after { content:" "; }
+ .empresa-interior { gap:30px; }
+}
+@media(max-width:500px) {
+ .pin-cabana { min-width:28px; height:22px; font-size:10px!important; }
+ .documento { padding:20px; }
+ .encuentro h2 { font-size:clamp(40px,10vw,56px); }
+ .rutas-empresa article { padding:18px 0; }
+}
+
+
+.muestra-serv { display:flex; flex-direction:column; justify-content:center; gap:6px; min-height:80px; margin:9px 0; padding:12px 14px; background:linear-gradient(115deg,#dbe9d6,#eff2e2); color:#273a2c; border-radius:4px; }
+.muestra-serv small,.muestra-serv span { font:11px/1.4 var(--mono); }
+.muestra-flujo,.muestra-turnos,.muestra-barras { display:flex; align-items:center; gap:6px; }
+.muestra-flujo span,.muestra-turnos > * { padding:4px 6px; border:1px solid #7b9584; border-radius:3px; }
+.muestra-turnos b { color:white; background:#395b49; font:600 11px/1.4 var(--mono); }
+.muestra-ficha { display:grid; gap:6px; padding-left:9px; border-left:3px solid #5c8070; }
+.muestra-barras { height:30px; align-items:end; border-bottom:1px solid #829e87; }
+.muestra-barras i { width:12%; height:var(--alto); background:#507c62; }
+
+.visor-a4 { position:relative; width:min(100%,350px); aspect-ratio:210 / 297; }
+.visor-a4 .documento { position:absolute; top:0; left:0; width:350px; max-width:none; height:495px; padding:20px 23px 18px; transform-origin:top left; transform:scale(var(--escala-papel,1)); }
+.visor-a4 .papel-datos { margin:9px 0 12px; }
+.visor-a4 .doc-total { margin-top:8px; }
+.visor-a4 #sello-doc { margin-top:8px; }

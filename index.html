@@ -17,49 +17,28 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..800&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@1,8..60,400;1,8..60,500&display=swap">
-<link rel="stylesheet" href="assets/estilos.css?v=5">
+<link rel="stylesheet" href="assets/estilos.css?v=6">
+<link rel="stylesheet" href="assets/laboratorio.css?v=2">
+<link rel="stylesheet" href="assets/proyectos.css?v=3">
+<link rel="stylesheet" href="assets/secciones.css?v=1">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Organization","name":"Soluciones de Ingeniería Hofmann García SpA","alternateName":"Hofmann García","url":"https://sdihofmanngarcia.cl/","sameAs":["https://www.linkedin.com/company/hofmann-garcia/","https://www.instagram.com/soluciones.hg","https://www.facebook.com/solucioneshofmanngarcia"],"taxID":"78.492.109-3","email":"contacto@sdihofmanngarcia.cl","telephone":["+56977939425","+56978160040"],"address":{"@type":"PostalAddress","addressLocality":"Temuco","addressRegion":"La Araucanía","addressCountry":"CL"}}
 </script>
-<script type="importmap">
-{"imports":{"three":"./assets/vendor/three.module.min.js"}}
-</script>
 </head>
-<body class="cargando">
+<body>
 <a class="saltar" href="#contenido">Saltar al contenido</a>
-
-<!-- Cargador: el monograma se dibuja mientras se arma la red -->
-<div class="cargador" aria-hidden="true">
-  <svg class="cargador__hg" viewBox="-8 -8 163 88" width="163" height="88">
-    <g fill="none" stroke="currentColor" stroke-width="12">
-      <path d="M6 0V72"/><path d="M54 0V72"/><path d="M6 36H81"/><path d="M135 18A30 30 0 1 0 141 36H105"/>
-    </g>
-  </svg>
-  <div class="cargador__pie">
-    <span>Conectando sistemas</span>
-    <span class="cargador__cifra">0</span><span>/ 9</span>
-  </div>
-</div>
-
-<canvas class="red" id="red" aria-hidden="true"></canvas>
-<div class="red-capa" aria-hidden="true"></div>
-
-<div class="cursor" aria-hidden="true">
-  <span class="cursor__cruz"></span>
-  <span class="cursor__lectura"><i class="cursor__estado">sin conexión</i></span>
-</div>
-
 <header class="barra">
   <a class="marca" href="#inicio" aria-label="Soluciones de Ingeniería Hofmann García, inicio">
     <svg viewBox="0 0 147 72" width="38" height="19" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="12"><path d="M6 0V72"/><path d="M54 0V72"/><path d="M6 36H81"/><path d="M135 18A30 30 0 1 0 141 36H105"/></g></svg>
     <span class="marca__texto"><span class="marca__pre">Soluciones de Ingeniería</span> <span>Hofmann García</span></span>
   </a>
   <nav class="menu" id="menu" aria-label="Secciones">
-    <a href="#metodo" data-mezcla>Método</a>
-    <a href="#servicios" data-mezcla>Servicios</a>
-    <a href="#laboratorio" data-mezcla>Laboratorio</a>
-    <a href="#empresas" data-mezcla>Empresas</a>
-    <a href="#sector-publico" data-mezcla>Sector público</a>
+    <a href="#laboratorio">Laboratorio</a>
+    <a href="#metodo">Método</a>
+    <a href="#servicios">Servicios</a>
+
+    <a href="#empresas">Empresas</a>
+    <a href="#sector-publico">Sector público</a>
   </nav>
   <div class="barra__lado">
     <span class="reloj" aria-label="Hora en Temuco">Temuco <b class="reloj__hora">--:--</b></span>
@@ -78,237 +57,167 @@
 
 <main id="contenido">
 
-  <!-- 01 PORTADA -->
   <section class="portada" id="inicio" data-lamina="01" data-nombre="Portada">
-    <div class="portada__marco">
-      <div class="portada__arriba mono">
-        <span>01 — Inicio</span>
-        <span>Temuco · La Araucanía</span>
-      </div>
-      <div class="portada__centro">
-        <h1 class="portada__titulo">
-          <span class="linea">Hacemos que sus</span>
-          <span class="linea">sistemas <em>conversen.</em></span>
-        </h1>
-        <p class="portada__bajada">Somos una empresa de software de Temuco. Desarrollamos sistemas a medida, conectamos las plataformas que hoy no se hablan y automatizamos con inteligencia artificial el trabajo que se sigue haciendo a mano. Para empresas e instituciones públicas.</p>
+    <div class="portada__interior">
+      <div class="portada__texto">
+        <p class="origen"><i aria-hidden="true"></i>Ingeniería de software <span>/</span> Temuco, Chile</p>
+        <h1>Hacemos que<br>sus sistemas<br><em>conversen.</em></h1>
+        <p class="portada__bajada">Conectamos plataformas y automatizamos el trabajo manual de empresas e instituciones públicas.</p>
         <div class="portada__acciones">
-          <a class="boton magnetico" href="#contacto">Conversemos su proyecto <span aria-hidden="true">→</span></a>
-          <a class="enlace" href="#laboratorio">Ver lo que hemos construido</a>
+          <a class="boton" href="#contacto">Conversemos su proyecto <span aria-hidden="true">↗</span></a>
+          <a class="enlace-lab" href="#laboratorio">Probar el laboratorio <span aria-hidden="true">↓</span></a>
         </div>
       </div>
-      <div class="portada__abajo mono">
-        <p class="figura"><b>Fig. 1</b> — Nueve sistemas de una organización cualquiera. Cada uno guarda sus propios datos, y entre ellos la información viaja por correo y planilla. <span class="solo-puntero">Pase el cursor sobre un sistema.</span></p>
-        <span class="bajar">Desplácese<span class="bajar__linea"></span></span>
+      <figure class="instrumento">
+        <div class="instrumento__vista" id="despiece" role="img" aria-label="Solicitud 024. El correo de entrada se convierte en datos estructurados y llega como tarea al equipo de operaciones.">
+          <div class="orbita"></div>
+          <div class="mecanismo">
+            <div class="placa placa--correo"><div class="interior-placa"><small>01 / Correo de entrada</small><strong>Solicitud recibida</strong><span>Folio 024 · Mesa de partes</span></div></div>
+            <div class="placa placa--datos"><div class="interior-placa"><small>02 / Datos extraídos</small><strong>Registro creado</strong><span>Folio 024 · Tipo: solicitud</span></div></div>
+            <div class="placa placa--revision"><img src="assets/modulo-hg.svg" alt="" width="520" height="328" fetchpriority="high"></div>
+          </div>
+          <svg class="recorrido" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M73 78 H77 L79 76 V61 L77 59 V45 L74 42"/>
+            <circle cx="73" cy="78" r=".7"/><circle cx="77" cy="59" r=".7"/><circle cx="74" cy="42" r=".7"/>
+          </svg>
+        </div>
+        <figcaption class="instrumento__pie">
+          <div><span class="leyenda">Fig. 01 <i>/</i> Flujo de una solicitud</span><strong>Del correo a la revisión</strong></div>
+          <button type="button" class="desmontar" aria-controls="despiece" aria-expanded="false"><span aria-hidden="true">＋</span> <b>Ver capas</b></button>
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="laboratorio envoltura" id="laboratorio" data-lamina="02" data-nombre="Laboratorio">
+    <p class="origen"><i aria-hidden="true"></i>Laboratorio interactivo</p>
+    <h2 class="titulo-lab">Software en <em>acción.</em></h2>
+    <p class="lab-intro">Explore tres de nuestros sistemas con datos de ejemplo.</p>
+    <nav class="indice-demos" aria-label="Demostraciones"><a href="#radar-demo">Radar de licitaciones ↓</a><a href="#cabanas-demo">Gestión de cabañas ↓</a><a href="#gestion-demo">Gestión comercial ↓</a></nav>
+
+    <article id="radar-demo" class="proyecto proyecto--radar">
+      <header><h3>Radar de licitaciones</h3><p>Encuentre compras públicas que calzan con su empresa y guarde las que quiere evaluar.</p></header>
+      <div class="taller radar-taller">
+        <div class="radar-visual">
+          <div class="instrument-label"><span>Monitor de oportunidades</span><span>Radar HG</span></div>
+          <div class="pantalla-radar" id="pantalla-radar" role="group" aria-label="Oportunidades detectadas">
+            <div class="visor-radar" aria-hidden="true"><div class="barrido"></div></div>
+            <div id="senales"></div>
+          </div>
+          <div class="instrument-label"><span id="conteo-radar" aria-live="polite"></span><span>Más cerca del centro, cierre más próximo</span></div>
+        </div>
+        <div class="panel-demo radar-panel">
+          <div class="campos-demo"><label>Rubro<select id="rubro"><option>Todos</option><option>Tecnología</option><option>Construcción</option><option>Equipamiento</option></select></label><label>Región<select id="region"><option>Todas</option><option>La Araucanía</option><option>Los Ríos</option><option>Los Lagos</option></select></label></div>
+          <div class="radar-vistas"><button type="button" id="detectar" aria-pressed="true">Detectadas</button><button type="button" id="ver-guardadas" aria-pressed="false">En seguimiento <span id="n-guardadas">0</span></button></div>
+          <div id="lista-radar" class="lista-radar" role="group" aria-label="Resultados del radar"></div>
+          <div id="ficha-radar" class="ficha-radar" aria-live="polite"></div>
+        </div>
       </div>
-      <!-- Aparece cuando la red queda conectada -->
-      <div class="conectado" aria-hidden="true">
-        <p class="conectado__frase">Un dato se ingresa <em>una vez</em><br>y llega a todos lados.</p>
+    </article>
+
+    <article id="cabanas-demo" class="proyecto proyecto--cabanas">
+      <header><h3>Gestión de cabañas</h3><p>Elija una de las siete cabañas del recinto y reserve una estadía. El calendario muestra qué noches siguen disponibles.</p></header>
+      <div class="taller">
+        <div class="paisaje">
+          <div class="instrument-label"><span>Recinto de ejemplo</span><span>7 cabañas</span></div>
+          <div class="mapa-cabanas" role="group" aria-label="Cabañas del recinto de ejemplo">
+            <img class="foto-recinto" src="assets/recinto-lacustre.webp" alt="Recinto de ejemplo con siete cabañas de madera junto a un lago del sur de Chile." width="1440" height="960" loading="lazy">
+            <button class="pin-cabana" type="button" data-cabana="0" style="--x:18%;--y:57%" aria-pressed="true">Coigüe</button>
+            <button class="pin-cabana" type="button" data-cabana="1" style="--x:74%;--y:65%" aria-pressed="false">Arrayán</button>
+            <button class="pin-cabana" type="button" data-cabana="2" style="--x:44%;--y:41%" aria-pressed="false">Lenga</button>
+            <button class="pin-cabana" type="button" data-cabana="3" style="--x:20%;--y:35%" aria-pressed="false">Canelo</button>
+            <button class="pin-cabana" type="button" data-cabana="4" style="--x:43%;--y:28%" aria-pressed="false">Raulí</button>
+            <button class="pin-cabana" type="button" data-cabana="5" style="--x:74%;--y:32%" aria-pressed="false">Maitén</button>
+            <button class="pin-cabana" type="button" data-cabana="6" style="--x:89%;--y:44%" aria-pressed="false">Ulmo</button>
+          </div>
+          <div class="instrument-label"><span>● Disponible　 × Ocupada</span></div>
+        </div>
+        <div class="panel-demo">
+          <p class="sobrelinea">Calendario de ejemplo · Enero 2027</p>
+          <h4 id="nombre-cabana">Cabaña Coigüe</h4>
+          <label class="selector-cabana">Cabaña<select id="elegir-cabana"></select></label>
+          <div class="calendario" id="calendario" aria-label="Disponibilidad por noche"></div>
+          <div class="claves-cal"><span>□ Libre</span><span>▧ Ocupada</span><span>■ Selección</span></div>
+          <div class="campos-demo"><label>Llegada<select id="llegada"></select></label><label>Estadía<select id="noches"><option value="1">1 noche</option><option value="2" selected>2 noches</option><option value="3">3 noches</option></select></label></div>
+          <p class="estado-cabana" id="estado-cabana" role="status"></p>
+          <button type="button" id="reservar" class="accion-demo">Simular reserva</button>
+          <button type="button" id="reiniciar-reservas" class="texto-demo" hidden>Restablecer calendario</button>
+        </div>
       </div>
-    </div>
-  </section>
+    </article>
 
-  <!-- 02 MÉTODO -->
-  <section class="metodo" id="metodo" data-lamina="02" data-nombre="Método">
-    <div class="metodo__pista">
-      <div class="metodo__cabeza">
-        <p class="rotulo mono"><span class="cota-mini"></span>02 — Método</p>
-        <h2 class="titulo-seccion">Primero entendemos.<br>Después programamos.</h2>
-        <p class="entrada">La mayoría de los proyectos de software no fallan por el código: fallan porque nadie preguntó cómo se trabaja de verdad. Por eso empezamos por ahí.</p>
+    <article id="gestion-demo" class="proyecto proyecto--gestion">
+      <header><div><p class="sobrelinea">Sistema en desarrollo</p><h3>Gestión comercial para pymes</h3></div><p>Arme una cotización con ítems del catálogo y conviértala en una orden de venta.</p></header>
+      <div class="taller">
+        <div class="mesa-documento">
+          <div class="barra-documento"><span>Vista previa</span><span>A4 · 1 página</span></div>
+          <fieldset class="estilos-doc"><legend>Diseño del documento</legend><label><input type="radio" name="plantilla" value="editorial" checked><span>Editorial</span></label><label><input type="radio" name="plantilla" value="tecnico" ><span>Técnico</span></label><label><input type="radio" name="plantilla" value="clasico" ><span>Clásico</span></label></fieldset>
+          <div class="visor-a4"><div class="documento" id="hoja-comercial" data-estilo="editorial"><div class="papel-membrete"><b>Sur Técnico</b><span>Servicios de instalación y mantenimiento</span></div><div class="doc-cab"><h4 id="tipo-doc">Cotización</h4><span id="folio-doc">C–024</span></div>
+            <div class="papel-datos"><p><small>Preparado para</small><b>Taller del Sur</b></p><p><small>Emisión</small><b>06 ene 2027</b></p></div>
+            <table><caption class="sr">Detalle del documento</caption><thead><tr><th>Descripción</th><th>Cant.</th><th>Importe</th></tr></thead><tbody id="lineas-doc"></tbody></table>
+            <div class="doc-total"><span>Total neto · CLP</span><strong id="importe-doc"></strong></div><div id="sello-doc" hidden>Orden generada ✓</div>
+            <div class="papel-pie"><p id="nota-doc">Vigencia de la cotización: 15 días.</p><span>Documento de ejemplo</span><span>1 / 1</span></div>
+          </div></div>
+        </div>
+        <div class="panel-demo">
+          <p class="sobrelinea">Catálogo de servicios</p><h4>Prepare el documento</h4>
+
+          <div id="catalogo-demo"></div>
+          <p id="estado-doc" class="estado-doc" role="status"></p>
+          <button type="button" id="convertir" class="accion-demo">Convertir en orden de venta</button>
+        </div>
       </div>
-      <article class="paso">
-        <span class="paso__num">01</span>
-        <svg class="paso__dibujo" viewBox="0 0 240 160" aria-hidden="true">
-          <rect x="18" y="62" width="44" height="30" rx="4"/><rect x="98" y="24" width="44" height="30" rx="4"/><rect x="98" y="104" width="44" height="30" rx="4"/><rect x="178" y="62" width="44" height="30" rx="4"/>
-          <path d="M62 77 H80 V39 H98 M80 77 V119 H98 M142 39 H160 V77 H178 M142 119 H160 V77"/>
-          <circle cx="80" cy="77" r="3"/><circle cx="160" cy="77" r="3"/>
-        </svg>
-        <h3>Descubrimiento</h3>
-        <p>Conversamos con quienes hacen el trabajo, no solo con quien lo encarga. Dibujamos el proceso real, sus datos y sus excepciones antes de proponer tecnología.</p>
-      </article>
-      <article class="paso">
-        <span class="paso__num">02</span>
-        <svg class="paso__dibujo" viewBox="0 0 240 160" aria-hidden="true">
-          <rect x="30" y="18" width="180" height="124" rx="6"/>
-          <path d="M30 40 H210"/><circle cx="44" cy="29" r="3"/><circle cx="56" cy="29" r="3"/>
-          <rect x="46" y="56" width="52" height="68"/><path d="M114 60 H192 M114 76 H176 M114 92 H192 M114 108 H160"/>
-        </svg>
-        <h3>Diseño</h3>
-        <p>Traducimos lo conversado en pantallas, alcance, plazos y criterios de aceptación que se pueden comprobar. Si algo no se puede verificar, no se promete.</p>
-      </article>
-      <article class="paso">
-        <span class="paso__num">03</span>
-        <svg class="paso__dibujo" viewBox="0 0 240 160" aria-hidden="true">
-          <path d="M40 50 L22 80 L40 110 M200 50 L218 80 L200 110 M132 40 L108 120"/>
-          <path d="M60 140 H180"/><circle cx="72" cy="140" r="5"/><circle cx="112" cy="140" r="5"/><circle cx="152" cy="140" r="5"/>
-        </svg>
-        <h3>Desarrollo</h3>
-        <p>Programamos por etapas cortas, con pruebas automatizadas y avances que se pueden revisar desde la primera semana.</p>
-      </article>
-      <article class="paso">
-        <span class="paso__num">04</span>
-        <svg class="paso__dibujo" viewBox="0 0 240 160" aria-hidden="true">
-          <rect x="60" y="30" width="120" height="30" rx="4"/><rect x="60" y="70" width="120" height="30" rx="4"/><rect x="60" y="110" width="120" height="30" rx="4"/>
-          <circle cx="78" cy="45" r="4"/><circle cx="78" cy="85" r="4"/><circle cx="78" cy="125" r="4"/>
-          <path d="M140 80 L150 90 L168 72"/>
-        </svg>
-        <h3>Puesta en marcha</h3>
-        <p>Publicamos, capacitamos a quienes lo van a usar y acompañamos los primeros días de uso real hasta la recepción conforme.</p>
-      </article>
+    </article>
+    <p class="laboratorio__pie">¿Busca un sistema para su organización? <a class="enlace" href="#contacto">Conversemos su proyecto.</a></p>
+  </section>
+
+
+  <section id="metodo" class="metodo-nuevo envoltura" data-lamina="03" data-nombre="Método">
+    <p class="origen"><i aria-hidden="true"></i>Nuestro método</p>
+    <div class="encuentro">
+      <div class="encuentro__texto"><p class="sobrelinea">01 / Descubrimiento</p>
+        <h2>Primero,<br><em>conversamos.</em></h2>
+        <p>Nos sentamos con las personas que hacen el trabajo. Analizamos dónde se repite una tarea, qué se demora y a quién afecta. Con ese diagnóstico proponemos una solución.</p>
+      </div>
+      <img src="assets/descubrimiento.webp" loading="lazy" width="1440" height="960" alt="Dos personas revisan un flujo de trabajo y señalan el paso que retrasa el proceso.">
+    </div>
+    <div class="etapas">
+      <article><span>02 / Diseño</span><h3>Acordamos el alcance.</h3><p>Revisamos las pantallas con su equipo y dejamos por escrito qué debe hacer el sistema, cuánto cuesta y cómo se comprobará la entrega.</p></article>
+      <article><span>03 / Desarrollo</span><h3>Probamos por etapas.</h3><p>Entregamos avances que su equipo puede usar. Probamos también las excepciones, como una reserva duplicada o una orden incompleta.</p></article>
+      <article><span>04 / Puesta en marcha</span><h3>Acompañamos el estreno.</h3><p>Publicamos el sistema, capacitamos a quienes lo operan y revisamos los primeros casos reales hasta la recepción conforme.</p></article>
     </div>
   </section>
 
-  <!-- 03 SERVICIOS -->
-  <section class="servicios envoltura" id="servicios" data-lamina="03" data-nombre="Servicios">
-    <p class="rotulo mono"><span class="cota-mini"></span>03 — Servicios</p>
-    <h2 class="titulo-seccion">Qué hacemos.</h2>
-    <ol class="lista-servicios">
-      <li class="servicio">
-        <button class="servicio__cabeza" type="button" aria-expanded="false">
-          <span class="servicio__num mono">3.1</span>
-          <span class="servicio__nombre">Automatización con IA</span>
-          <span class="servicio__signo" aria-hidden="true"></span>
-        </button>
-        <div class="servicio__cuerpo"><div>
-          <p>Procesos repetitivos que hoy consumen horas: clasificar solicitudes, extraer datos de documentos, redactar borradores, responder consultas frecuentes. Con modelos de lenguaje y con revisión humana donde corresponde.</p>
-          <p class="etiquetas mono">Modelos de lenguaje · Lectura de documentos · Asistentes</p>
-        </div></div>
-      </li>
-      <li class="servicio">
-        <button class="servicio__cabeza" type="button" aria-expanded="false">
-          <span class="servicio__num mono">3.2</span>
-          <span class="servicio__nombre">Integraciones</span>
-          <span class="servicio__signo" aria-hidden="true"></span>
-        </button>
-        <div class="servicio__cuerpo"><div>
-          <p>Sistemas que no se hablan entre sí y personas que copian datos de uno a otro. Conectamos plataformas por API, construimos servidores MCP para herramientas de IA y nos adaptamos a los estándares que exige cada sector.</p>
-          <p class="etiquetas mono">API · MCP · Estándares de interoperabilidad</p>
-        </div></div>
-      </li>
-      <li class="servicio">
-        <button class="servicio__cabeza" type="button" aria-expanded="false">
-          <span class="servicio__num mono">3.3</span>
-          <span class="servicio__nombre">Sistemas a medida</span>
-          <span class="servicio__signo" aria-hidden="true"></span>
-        </button>
-        <div class="servicio__cuerpo"><div>
-          <p>Plataformas web de gestión: trámites, inventarios, agendas, seguimiento de proyectos. Diseñadas a partir del flujo real de trabajo, y no al revés.</p>
-          <p class="etiquetas mono">Aplicaciones web · Bases de datos · Paneles de gestión</p>
-        </div></div>
-      </li>
-      <li class="servicio">
-        <button class="servicio__cabeza" type="button" aria-expanded="false">
-          <span class="servicio__num mono">3.4</span>
-          <span class="servicio__nombre">Sitios y portales</span>
-          <span class="servicio__signo" aria-hidden="true"></span>
-        </button>
-        <div class="servicio__cuerpo"><div>
-          <p>Sitios institucionales autoadministrables, con transparencia activa, accesibilidad y buen rendimiento en cualquier dispositivo. Este sitio es un ejemplo.</p>
-          <p class="etiquetas mono">Sitios institucionales · Transparencia activa · Accesibilidad</p>
-        </div></div>
-      </li>
-      <li class="servicio">
-        <button class="servicio__cabeza" type="button" aria-expanded="false">
-          <span class="servicio__num mono">3.5</span>
-          <span class="servicio__nombre">Datos y reportes</span>
-          <span class="servicio__signo" aria-hidden="true"></span>
-        </button>
-        <div class="servicio__cuerpo"><div>
-          <p>Limpieza y ordenamiento de datos, reportes que se generan solos y tableros para que las decisiones se tomen con información al día.</p>
-          <p class="etiquetas mono">Calidad de datos · Reportes automáticos · Tableros</p>
-        </div></div>
-      </li>
-    </ol>
+  <section id="servicios" class="servicios-nuevos envoltura" data-lamina="04" data-nombre="Servicios">
+    <p class="origen"><i aria-hidden="true"></i>Servicios</p><h2 class="titulo-lab">Qué <em>hacemos.</em></h2>
+    <div class="catalogo-servicios">
+      <details name="especialidad" class="especialidad" open><summary><span class="especialidad__nombre">Automatización con IA</span><span class="especialidad__bajada">De un correo a una tarea lista para revisar.</span><i aria-hidden="true"></i></summary>
+        <div class="especialidad__detalle"><div><h3>Cuándo sirve</h3><p>Cuando llegan solicitudes por correo, alguien debe leerlas, clasificarlas y copiar los datos.</p></div><div><h3>Qué entregamos</h3><p>Configuramos la extracción, las reglas de derivación y una bandeja para revisar campos dudosos.</p></div><div class="ejemplo-serv"><h3>En la práctica</h3><div class="muestra-serv" aria-hidden="true"><div class="muestra-flujo"><span>Correo</span><b>→</b><span>Solicitud 024</span></div><small>Asignada a Compras ✓</small></div><p>Una solicitud de compra queda asignada al área que la aprueba.</p></div></div></details>
+      <details name="especialidad" class="especialidad"><summary><span class="especialidad__nombre">Integraciones</span><span class="especialidad__bajada">Un mismo dato disponible en sus plataformas.</span><i aria-hidden="true"></i></summary>
+        <div class="especialidad__detalle"><div><h3>Cuándo sirve</h3><p>Ventas, operaciones y finanzas mantienen versiones distintas de una misma orden.</p></div><div><h3>Qué entregamos</h3><p>Conectamos las herramientas por API, acordamos cuál conserva el dato original y dejamos registro de los errores para reintentar.</p></div><div class="ejemplo-serv"><h3>En la práctica</h3><div class="muestra-serv" aria-hidden="true"><div class="muestra-flujo"><span>Venta 018</span><b>⇄</b><span>Orden 018</span></div><small>Registros sincronizados ✓</small></div><p>Una venta confirmada crea la orden que necesita el equipo de operaciones.</p></div></div></details>
+      <details name="especialidad" class="especialidad"><summary><span class="especialidad__nombre">Sistemas a medida</span><span class="especialidad__bajada">Una pantalla que sigue las reglas de su negocio.</span><i aria-hidden="true"></i></summary>
+        <div class="especialidad__detalle"><div><h3>Cuándo sirve</h3><p>La planilla de reservas permite asignar la misma cabaña a dos huéspedes.</p></div><div><h3>Qué entregamos</h3><p>Diseñamos el calendario, los permisos y las reglas de disponibilidad. Probamos fechas límite y cambios de reserva con su equipo.</p></div><div class="ejemplo-serv"><h3>En la práctica</h3><div class="muestra-serv" aria-hidden="true"><div class="muestra-turnos"><span>Lun</span><span>Mar</span><b>Mié</b><b>Jue</b><span>Vie</span></div><small>Reserva · 2 noches</small></div><p>Al cambiar la fecha de llegada, el sistema vuelve a comprobar las noches disponibles.</p></div></div></details>
+      <details name="especialidad" class="especialidad"><summary><span class="especialidad__nombre">Sitios y portales</span><span class="especialidad__bajada">Que el visitante encuentre lo que vino a hacer.</span><i aria-hidden="true"></i></summary>
+        <div class="especialidad__detalle"><div><h3>Cuándo sirve</h3><p>Una persona llama para preguntar por un trámite porque no encuentra los requisitos en el sitio.</p></div><div><h3>Qué entregamos</h3><p>Ordenamos los contenidos por tarea, diseñamos la navegación móvil y dejamos un editor para que su equipo publique cambios.</p></div><div class="ejemplo-serv"><h3>En la práctica</h3><div class="muestra-serv" aria-hidden="true"><div class="muestra-ficha"><b>Solicitud de permiso</b><span>Requisitos　/　Documentos</span></div></div><p>La ficha de un trámite reúne requisitos, documentos y canal de atención.</p></div></div></details>
+      <details name="especialidad" class="especialidad"><summary><span class="especialidad__nombre">Datos y reportes</span><span class="especialidad__bajada">Del informe mensual a la fila que explica la cifra.</span><i aria-hidden="true"></i></summary>
+        <div class="especialidad__detalle"><div><h3>Cuándo sirve</h3><p>Preparar un cierre exige juntar archivos, corregir nombres y comprobar totales a mano.</p></div><div><h3>Qué entregamos</h3><p>Acordamos las definiciones de los indicadores, limpiamos las fuentes y preparamos un tablero con fecha de actualización.</p></div><div class="ejemplo-serv"><h3>En la práctica</h3><div class="muestra-serv" aria-hidden="true"><div class="muestra-barras"><i style="--alto:35%"></i><i style="--alto:65%"></i><i style="--alto:50%"></i><i style="--alto:85%"></i><i style="--alto:60%"></i></div><small>Cotizaciones por semana</small></div><p>Desde el total de cotizaciones pendientes se puede revisar cuáles requieren seguimiento.</p></div></div></details>
+    </div>
   </section>
 
-  <!-- 04 LABORATORIO -->
-  <section class="laboratorio envoltura" id="laboratorio" data-lamina="04" data-nombre="Laboratorio">
-    <p class="rotulo mono"><span class="cota-mini"></span>04 — Laboratorio</p>
-    <div class="laboratorio__cabeza">
-      <h2 class="titulo-seccion">Lo que ya<br>construimos.</h2>
-      <p class="entrada">Algunos de los desarrollos propios que hemos construido.</p>
+  <section class="empresa-nueva" id="empresas" data-lamina="05" data-nombre="Empresas">
+    <div class="envoltura empresa-interior">
+      <div class="empresa-voz"><p class="origen"><i aria-hidden="true"></i>Para empresas</p>
+        <h2>¿Qué le quita <br><em>tiempo</em> a <br>su equipo?</h2>
+        <p>Si una tarea depende de copiar datos o de que alguien recuerde el siguiente paso, podemos empezar por ahí.</p>
+        <a class="boton" href="#contacto">Contarnos el problema <span aria-hidden="true">↗</span></a>
+      </div>
+      <div class="rutas-empresa">
+        <article><small>Automatización puntual</small><h3>Revisamos el mismo portal todos los días.</h3><p>Definimos qué oportunidades interesan y organizamos las que requieren seguimiento.</p><a href="#radar-demo">Explorar el radar <span aria-hidden="true">↗</span></a></article>
+        <article><small>Sistema a medida</small><h3>Las reservas entran por varios canales.</h3><p>Reunimos las solicitudes en un calendario que comprueba disponibilidad antes de confirmar.</p><a href="#cabanas-demo">Probar una reserva <span aria-hidden="true">↗</span></a></article>
+        <article><small>Gestión comercial</small><h3>Volvemos a escribir cada cotización al vender.</h3><p>El equipo arma el presupuesto desde su catálogo y conserva los ítems al generar la orden.</p><a href="#gestion-demo">Preparar una cotización <span aria-hidden="true">↗</span></a></article>
+      </div>
+      <p class="empresa-condiciones">Acordamos alcance, plazo y precio por escrito. Ofrecemos soporte y mejoras después de la entrega. Los datos son del cliente y firmamos acuerdos de confidencialidad cuando el proyecto lo requiere.</p>
     </div>
-    <div class="laminas">
-      <article class="lamina">
-        <div class="lamina__dibujo" aria-hidden="true"><svg viewBox="0 0 200 110"><path d="M20 55 H70 M130 55 H180"/><rect x="70" y="35" width="60" height="40"/><path d="M20 30 V80 M180 30 V80"/><circle cx="100" cy="55" r="8"/></svg></div>
-        <h3>Servidor MCP sobre Mercado Público</h3>
-        <p>Conecta la búsqueda de licitaciones de Mercado Público con un asistente de inteligencia artificial. El protocolo está implementado desde cero, sin dependencias.</p>
-        <dl class="cajetin mono">
-          <div><dt>Proyecto</dt><dd>P-01</dd></div>
-          <div><dt>Pruebas</dt><dd>20</dd></div>
-          <div><dt>Técnica</dt><dd>Node.js · MCP</dd></div>
-          <div><dt>Estado</dt><dd>Demostración</dd></div>
-        </dl>
-      </article>
-      <article class="lamina">
-        <div class="lamina__dibujo" aria-hidden="true"><svg viewBox="0 0 200 110"><rect x="55" y="12" width="70" height="88"/><path d="M68 30 H112 M68 42 H112 M68 54 H98 M68 66 H112 M68 78 H92"/><path d="M135 56 H175 M165 46 L175 56 L165 66"/></svg></div>
-        <h3>Analizador de bases de licitación</h3>
-        <p>Lee unas bases y extrae lo que define si se puede postular: requisitos, plazos, garantías y criterios. Detecta defectos del documento y explica cada conclusión.</p>
-        <dl class="cajetin mono">
-          <div><dt>Proyecto</dt><dd>P-02</dd></div>
-          <div><dt>Pruebas</dt><dd>23</dd></div>
-          <div><dt>Técnica</dt><dd>Node.js</dd></div>
-          <div><dt>Estado</dt><dd>Demostración</dd></div>
-        </dl>
-      </article>
-      <article class="lamina">
-        <div class="lamina__dibujo" aria-hidden="true"><svg viewBox="0 0 200 110"><rect x="30" y="25" width="90" height="60"/><path d="M45 45 H105 M45 58 H95 M45 71 H80"/><path d="M130 35 H175 V75 H150 L138 87 V75 H130 Z"/></svg></div>
-        <h3>Asistente con modelos locales</h3>
-        <p>Responde preguntas sobre documentos propios sin que la información salga de la organización: búsqueda semántica, lectura de documentos escaneados y modelos que corren en el mismo computador.</p>
-        <dl class="cajetin mono">
-          <div><dt>Proyecto</dt><dd>P-03</dd></div>
-          <div><dt>Técnica</dt><dd>Modelos locales · OCR</dd></div>
-          <div><dt>Estado</dt><dd>Prototipo</dd></div>
-        </dl>
-      </article>
-      <article class="lamina">
-        <div class="lamina__dibujo" aria-hidden="true"><svg viewBox="0 0 200 110"><ellipse cx="60" cy="30" rx="28" ry="9"/><path d="M32 30 V80 M88 30 V80"/><path d="M32 80 A28 9 0 0 0 88 80 M32 55 A28 9 0 0 0 88 55"/><rect x="115" y="25" width="60" height="60"/><path d="M115 40 H175 M88 55 H115"/></svg></div>
-        <h3>Aplicación web completa</h3>
-        <p>De la base de datos a la interfaz: una aplicación full stack sobre PostgreSQL, diseñada, construida y mantenida por nosotros.</p>
-        <dl class="cajetin mono">
-          <div><dt>Proyecto</dt><dd>P-04</dd></div>
-          <div><dt>Técnica</dt><dd>Full stack · PostgreSQL</dd></div>
-          <div><dt>Estado</dt><dd>En desarrollo</dd></div>
-        </dl>
-      </article>
-      <article class="lamina">
-        <div class="lamina__dibujo" aria-hidden="true"><svg viewBox="0 0 200 110"><path d="M100 28 C80 18 50 18 35 24 V92 C50 86 80 86 100 96 C120 86 150 86 165 92 V24 C150 18 120 18 100 28 Z"/><path d="M100 28 V96"/><path d="M50 40 H85 M50 52 H85 M50 64 H78 M115 40 H150 M115 52 H150 M115 64 H142"/></svg></div>
-        <h3>Recursos educativos</h3>
-        <p>Material digital para aprender y enseñar: guías, contenidos interactivos y apoyo para clases, diseñados para que se entiendan a la primera.</p>
-        <dl class="cajetin mono">
-          <div><dt>Proyecto</dt><dd>P-05</dd></div>
-          <div><dt>Técnica</dt><dd>Contenido digital</dd></div>
-          <div><dt>Estado</dt><dd>Realizados</dd></div>
-        </dl>
-      </article>
-    </div>
-    <p class="laboratorio__pie">¿Le interesa alguno de estos proyectos? <a class="enlace" href="#contacto">Contáctenos y agendamos una reunión.</a></p>
-  </section>
-
-  <!-- 05 EMPRESAS -->
-  <section class="empresas envoltura" id="empresas" data-lamina="05" data-nombre="Empresas">
-    <p class="rotulo mono"><span class="cota-mini"></span>05 — Empresas</p>
-    <div class="empresas__cabeza">
-      <h2 class="titulo-seccion">También para<br>empresas.</h2>
-      <p class="entrada">Pymes, empresas y organizaciones que necesitan un sistema a medida, automatizar un proceso o conectar las herramientas que ya usan. Sin licitación: conversamos, cotizamos y partimos.</p>
-    </div>
-    <div class="ofertas">
-      <article class="oferta">
-        <p class="oferta__tope mono">Proyecto</p>
-        <h3>A medida</h3>
-        <p>Un sistema pensado para su forma de trabajar. Alcance, plazo y precio por escrito, y pagos por etapas contra entregables.</p>
-      </article>
-      <article class="oferta">
-        <p class="oferta__tope mono">Semanas, no meses</p>
-        <h3>Automatización puntual</h3>
-        <p>Un proceso concreto que hoy se hace a mano: planillas que se copian, correos que se reenvían, documentos que se leen uno por uno.</p>
-      </article>
-      <article class="oferta">
-        <p class="oferta__tope mono">Después de la entrega</p>
-        <h3>Soporte y mejoras</h3>
-        <p>Correcciones, ajustes y nuevas funciones cuando el negocio las necesite, con un plan mensual o por encargo.</p>
-      </article>
-    </div>
-    <p class="empresas__pie mono">Firmamos acuerdos de confidencialidad cuando el proyecto lo requiere · Los datos son siempre del cliente</p>
   </section>
 
   <!-- 06 SECTOR PÚBLICO -->
@@ -317,7 +226,7 @@
       <p class="rotulo mono"><span class="cota-mini"></span>06 — Sector público</p>
       <div class="publico__cabeza">
         <h2 class="titulo-seccion">Cómo<br>comprarnos.</h2>
-        <p class="entrada">Y para instituciones públicas: somos proveedores del Estado en Mercado Público. Cotizamos con alcance, plazos y precio por escrito.</p>
+        <p class="entrada">Las instituciones públicas pueden solicitar una cotización con alcance, plazo y precio. Estos son nuestros datos de proveedor.</p>
       </div>
       <div class="modalidades">
         <article class="modalidad">
@@ -326,14 +235,14 @@
           <p>Para encargos acotados: un sitio, un diagnóstico, una automatización puntual. Respondemos con una cotización completa.</p>
         </article>
         <article class="modalidad">
-          <p class="modalidad__tope mono">Sobre 100 UTM</p>
+          <p class="modalidad__tope mono">Según las bases</p>
           <h3>Licitación pública</h3>
           <p>Propuesta técnica completa, anexos al día y garantías cuando las bases las exigen.</p>
         </article>
         <article class="modalidad">
           <p class="modalidad__tope mono">Según la ley de compras</p>
           <h3>Trato directo</h3>
-          <p>Cuando la institución lo justifica: continuidad de un servicio que ya prestamos o un desarrollo que solo nosotros podemos mantener.</p>
+          <p>Aportamos los antecedentes técnicos que la entidad solicite para evaluar y fundamentar una causal legal.</p>
         </article>
       </div>
       <dl class="ficha mono">
@@ -352,7 +261,7 @@
     <div class="envoltura">
       <p class="rotulo mono"><span class="cota-mini"></span>07 — Contacto</p>
       <h2 class="contacto__titulo">Cuéntenos qué<br>necesita <em>resolver.</em></h2>
-      <p class="entrada">Le respondemos con una propuesta concreta: alcance, plazo y precio.</p>
+      <p class="entrada">Cuéntenos qué tarea quiere mejorar y qué herramientas usa hoy. Con esa información evaluamos el alcance, el plazo y el precio.</p>
       <a class="contacto__correo magnetico" href="mailto:contacto@sdihofmanngarcia.cl">contacto@sdihofmanngarcia.cl</a>
       <div class="contacto__datos">
         <div><p class="mono">Teléfonos</p><p><a href="tel:+56977939425">+56 9 7793 9425</a><br><a href="tel:+56978160040">+56 9 7816 0040</a></p></div>
@@ -366,7 +275,7 @@
         <div><span>Proyecto</span><b>Sitio institucional</b></div>
         <div><span>Empresa</span><b>Soluciones de Ingeniería Hofmann García SpA</b></div>
         <div><span>Hecho en</span><b>Temuco</b></div>
-        <div><span>Versión</span><b>2026.1</b></div>
+        <div><span>Servicio</span><b>Software a medida</b></div>
         <div><span>Año</span><b class="pie__anio">2026</b></div>
         <div><span>Datos</span><b><a href="privacidad.html">Privacidad</a> · <a href="eliminacion-de-datos.html">Eliminación</a></b></div>
       </div>
@@ -379,14 +288,10 @@
 <script src="assets/vendor/ScrollTrigger.min.js" defer></script>
 <script src="assets/vendor/SplitText.min.js" defer></script>
 <script src="assets/vendor/lenis.min.js" defer></script>
-<script>
-  /* Red de seguridad: si algo falla, la pantalla de carga nunca se queda pegada */
-  setTimeout(function () {
-    if (!document.body.classList.contains('cargando')) return;
-    document.body.classList.remove('cargando');
-    var c = document.querySelector('.cargador'); if (c) c.style.display = 'none';
-  }, 7000);
-</script>
-<script type="module" src="assets/sitio.js?v=3"></script>
+
+<script defer src="assets/demostraciones.js?v=2"></script>
+
+<script defer src="assets/proyectos.js?v=3"></script>
+<script defer src="assets/sitio.js?v=5"></script>
 </body>
 </html>

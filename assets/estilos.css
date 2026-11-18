@@ -46,54 +46,7 @@ em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--acento
 .saltar{position:fixed;left:12px;top:-60px;z-index:100;background:var(--acento);color:#061112;padding:10px 14px;font-weight:600;text-decoration:none}
 .saltar:focus{top:12px}
 
-/* ------------------------------------------------------------ cargador */
-.cargador{
-  position:fixed;inset:0;z-index:90;background:var(--fondo);
-  display:grid;place-content:center;justify-items:center;gap:28px;color:var(--acento-claro);
-}
-.cargador__hg{width:min(150px,36vw);height:auto;overflow:visible}
-.cargador__hg path{stroke-dasharray:1;stroke-dashoffset:1}
-.cargador__pie{display:flex;gap:10px;align-items:baseline;font:500 11px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--tenue)}
-.cargador__cifra{color:var(--tinta);font-size:13px;min-width:4ch;text-align:right}
-body:not(.cargando) .cargador{pointer-events:none}
-
-/* ------------------------------------------------------------ lienzo */
-.red{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
-.red-capa{position:fixed;inset:0;z-index:1;pointer-events:none;overflow:hidden}
-.red-etiqueta{
-  position:absolute;left:0;top:0;white-space:nowrap;opacity:0;
-  font:500 10.5px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--tinta-2);
-  margin:-5px 0 0 16px;padding:5px 8px;border:1px solid transparent;border-radius:3px;
-  transition:color .3s,border-color .3s,background .3s;
-}
-.red-etiqueta::before{content:"";position:absolute;right:100%;top:50%;width:10px;height:1px;background:currentColor;opacity:.6}
-.red-etiqueta.foco{color:#061112;background:var(--acento-claro);border-color:var(--acento-claro)}
-.red-etiqueta--centro{color:var(--acento-claro);border-color:var(--acento-hondo);background:rgba(12,16,18,.7);margin-top:-30px;margin-left:-60px}
-.red-etiqueta--centro::before{display:none}
-main,.barra,.regla{position:relative;z-index:2}
-
-/* ------------------------------------------------------------ cursor */
-.cursor{position:fixed;left:0;top:0;z-index:80;pointer-events:none;display:none}
-.cursor__cruz{position:absolute;width:22px;height:22px;left:-11px;top:-11px;transition:transform .35s var(--curva),opacity .3s}
-.cursor__cruz::before,.cursor__cruz::after{content:"";position:absolute;background:var(--tinta)}
-.cursor__cruz::before{left:10px;top:0;width:1.5px;height:22px}
-.cursor__cruz::after{top:10px;left:0;height:1.5px;width:22px}
-.cursor__lectura{
-  position:absolute;left:18px;top:14px;white-space:nowrap;
-  font:500 11px/1.5 var(--mono);letter-spacing:.06em;color:var(--tinta-2);
-  opacity:0;transform:translateY(4px);transition:opacity .25s,transform .25s var(--curva);
-}
-.cursor__lectura b{color:var(--acento-claro);font-weight:500;font-size:12px;text-transform:uppercase;letter-spacing:.08em}
-.cursor__lectura i{font-style:normal;color:var(--tenue)}
-.cursor.con-cota .cursor__lectura{opacity:1;transform:none}
-.cursor.a-la-izquierda .cursor__lectura{left:auto;right:18px;text-align:right}
-.cursor__lectura i{color:var(--tinta-2)}
-.cursor.sobre-enlace .cursor__cruz{transform:rotate(45deg) scale(1.5)}
-@media (pointer:fine){
-  .cursor{display:block}
-  body.cursor-propio,body.cursor-propio a,body.cursor-propio button{cursor:none}
-}
-
+main{position:relative;z-index:2}
 /* ------------------------------------------------------------ barra */
 .barra{
   position:fixed;top:0;left:0;right:0;z-index:40;
@@ -174,33 +127,6 @@ main,.barra,.regla{position:relative;z-index:2}
 }
 .entrada{font-size:clamp(17px,1.5vw,21px);line-height:1.55;color:var(--tinta-2);max-width:38ch}
 .etiquetas{color:var(--tenue);font-size:11px;line-height:1.8}
-
-/* ------------------------------------------------------------ 01 portada */
-.portada{position:relative;height:100vh;height:100svh;min-height:600px}
-.portada__marco{position:absolute;inset:0;padding:calc(88px + 2vh) var(--margen) clamp(22px,4vh,40px);display:flex;flex-direction:column;justify-content:space-between;max-width:1600px;margin:0 auto}
-.portada__arriba{display:flex;justify-content:space-between;color:var(--tenue)}
-.portada__centro{max-width:960px}
-.portada__titulo{
-  font-size:clamp(46px,9.2vw,152px);line-height:.9;letter-spacing:-.045em;font-weight:600;
-  font-variation-settings:"wdth" 122;
-}
-.portada__titulo .linea{display:block;overflow:hidden;padding-bottom:.06em}
-.portada__titulo em{font-size:1.02em;letter-spacing:-.03em}
-.portada__bajada{margin-top:clamp(20px,3vh,34px);max-width:40ch;font-size:clamp(16px,1.35vw,19px);color:var(--tinta-2);line-height:1.6}
-.portada__acciones{display:flex;flex-wrap:wrap;align-items:center;gap:22px 30px;margin-top:clamp(24px,4vh,40px)}
-.portada__abajo{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;color:var(--tenue)}
-.figura{max-width:62ch;text-transform:none;letter-spacing:.02em;font-size:11.5px;line-height:1.6}
-.figura b{color:var(--tinta-2);font-weight:500}
-.bajar{display:flex;align-items:center;gap:12px;flex:none}
-.bajar__linea{width:1.5px;height:42px;background:linear-gradient(var(--acento) 0 50%,transparent 50%);background-size:100% 200%;animation:bajar 2.2s var(--curva) infinite}
-@keyframes bajar{0%{background-position:0 100%}100%{background-position:0 -100%}}
-@media (pointer:coarse){.solo-puntero{display:none}}
-
-.conectado{position:absolute;inset:0;pointer-events:none;opacity:0;display:flex;align-items:flex-end;padding:0 var(--margen) clamp(40px,10vh,110px)}
-.conectado__frase{
-  font-size:clamp(30px,4.6vw,68px);line-height:1;letter-spacing:-.035em;font-weight:600;font-variation-settings:"wdth" 118;
-  text-shadow:0 0 40px var(--fondo),0 0 20px var(--fondo);
-}
 
 /* ------------------------------------------------------------ 02 método */
 .metodo{position:relative;overflow:hidden;background:linear-gradient(transparent,var(--fondo) 18%)}
