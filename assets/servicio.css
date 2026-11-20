@@ -1,0 +1,65 @@
+/* Páginas de servicio: misma barra, tipografía y colores que la portada,
+ * sin las animaciones pesadas. Se carga después de estilos, laboratorio y secciones. */
+
+.serv-cabeza{
+  padding:clamp(118px,16vh,170px) 0 clamp(48px,6vw,80px);
+  background:radial-gradient(ellipse at 80% 40%,#1c39353b,transparent 50%),var(--fondo);
+  border-bottom:1px solid var(--regla-2);
+}
+.migas{font:500 11px/1.5 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--tenue);margin-bottom:26px}
+.migas a{color:var(--tinta-2);text-decoration:none}
+.migas a:hover{color:var(--acento-claro)}
+.serv-cabeza h1{
+  margin:22px 0 22px;max-width:15ch;
+  font-size:clamp(42px,7vw,96px);line-height:.98;font-weight:500;letter-spacing:-.055em;font-variation-settings:"wdth" 105;
+}
+.serv-cabeza h1 em{color:#9bd6c8}
+.serv-bajada{max-width:56ch;color:#b3bdb9;font-size:clamp(17px,1.4vw,20px);line-height:1.6;text-wrap:pretty}
+.serv-acciones{display:flex;flex-wrap:wrap;align-items:center;gap:14px 24px;margin-top:32px}
+.serv-acciones .boton{background:#a8e2d0}
+
+.serv-bloque{padding-block:clamp(54px,7vw,104px);border-bottom:1px solid var(--regla)}
+.serv-bloque h2{margin:16px 0 18px;font-size:clamp(34px,4.4vw,62px);line-height:1.02;font-weight:500;letter-spacing:-.05em}
+.serv-bloque h2 em{color:#9bd6c8}
+.serv-intro{max-width:60ch;color:var(--tinta-2);font-size:clamp(16px,1.3vw,18.5px);line-height:1.6}
+
+/* señales: cuándo conviene */
+.senales{list-style:none;margin:34px 0 0;padding:0;display:grid;grid-template-columns:repeat(2,1fr);gap:0 clamp(20px,3vw,48px)}
+.senales li{padding:20px 0 22px;border-top:1px solid var(--regla-2)}
+.senales b{display:block;font-weight:500;font-size:clamp(19px,1.6vw,23px);line-height:1.25;letter-spacing:-.02em;margin-bottom:8px}
+.senales span{color:var(--tinta-2);font-size:15.5px;line-height:1.55}
+.serv-nota{margin-top:26px;color:var(--tenue);font-size:15px;max-width:70ch}
+
+/* ejemplos navegables */
+.ejemplos{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,1.8vw,24px);margin-top:36px}
+.ejemplo{display:flex;flex-direction:column;gap:10px;padding:22px 22px 24px;border:1px solid var(--regla-2);border-radius:10px;background:var(--fondo-2);text-decoration:none;transition:border-color .3s,background .3s}
+.ejemplo:hover{border-color:#5b7362;background:#141d1a}
+.ejemplo small{font:500 11px/1.5 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:#a9ccba}
+.ejemplo h3{font-weight:500;font-size:clamp(21px,1.9vw,27px);line-height:1.15;letter-spacing:-.03em}
+.ejemplo p{color:var(--tinta-2);font-size:15px;line-height:1.55}
+.ejemplo span{margin-top:auto;padding-top:8px;font-size:14px;color:#9bd6c8}
+
+/* qué recibe */
+.entregables{list-style:none;margin:30px 0 0;padding:0;display:grid;grid-template-columns:repeat(2,1fr);gap:0 clamp(20px,3vw,48px)}
+.entregables li{padding:16px 0 18px 30px;border-top:1px solid var(--regla-2);position:relative;color:var(--tinta-2);font-size:16px;line-height:1.55}
+.entregables li::before{content:"";position:absolute;left:2px;top:25px;width:12px;height:1.5px;background:#9bd6c8}
+.entregables b{color:var(--tinta);font-weight:500}
+
+/* preguntas frecuentes */
+.preguntas{margin-top:30px;border-bottom:1px solid #42564b}
+.pregunta{border-top:1px solid #42564b}
+.pregunta summary{list-style:none;display:grid;grid-template-columns:1fr 34px;align-items:center;gap:18px;padding:22px clamp(4px,1.4vw,18px);cursor:pointer;font-size:clamp(18px,1.6vw,22px);font-weight:500;letter-spacing:-.02em;line-height:1.3}
+.pregunta summary::-webkit-details-marker{display:none}
+.pregunta summary:hover{background:#19241d}
+.pregunta summary i{display:grid;place-items:center;width:32px;height:32px;border:1px solid #5b7362;border-radius:50%;color:#c4e8cc;font-style:normal}
+.pregunta summary i::before{content:"+";font:19px var(--mono)}
+.pregunta[open] summary i::before{content:"−"}
+.pregunta[open]{background:#16211c}
+.pregunta p{padding:0 clamp(4px,1.4vw,18px) 24px;max-width:68ch;color:var(--tinta-2);line-height:1.6}
+
+/* contacto de la página */
+.serv-contacto .contacto__titulo{font-size:clamp(42px,7vw,110px)}
+
+@media (max-width:900px){
+  .senales,.entregables,.ejemplos{grid-template-columns:1fr}
+}
