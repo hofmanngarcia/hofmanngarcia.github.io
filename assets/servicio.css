@@ -32,6 +32,7 @@
 
 /* ejemplos navegables */
 .ejemplos{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,1.8vw,24px);margin-top:36px}
+.ejemplos--dos{grid-template-columns:repeat(2,1fr)}
 .ejemplo{display:flex;flex-direction:column;gap:10px;padding:22px 22px 24px;border:1px solid var(--regla-2);border-radius:10px;background:var(--fondo-2);text-decoration:none;transition:border-color .3s,background .3s}
 .ejemplo:hover{border-color:#5b7362;background:#141d1a}
 .ejemplo small{font:500 11px/1.5 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:#a9ccba}
@@ -57,9 +58,26 @@
 .pregunta[open]{background:#16211c}
 .pregunta p{padding:0 clamp(4px,1.4vw,18px) 24px;max-width:68ch;color:var(--tinta-2);line-height:1.6}
 
+/* ejemplo ilustrado: del mensaje al pedido */
+.flujo-pedido{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,2vw,28px);margin-top:36px;align-items:start}
+.flujo-paso{display:flex;flex-direction:column;gap:12px;min-width:0}
+.flujo-paso small{font:500 11px/1.5 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:#a9ccba}
+.burbuja{position:relative;align-self:flex-start;max-width:30ch;padding:12px 14px 22px;border-radius:12px 12px 12px 3px;background:#1d2b25;border:1px solid #33463c;color:var(--tinta);font-size:15.5px;line-height:1.45}
+.burbuja span{position:absolute;right:10px;bottom:5px;font:11px var(--mono);color:var(--tenue)}
+.hoja-pedido{padding:16px 18px;border:1px solid var(--regla-2);border-radius:10px;background:var(--fondo-2)}
+.hoja-pedido__cliente{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-weight:500;font-size:16px;padding-bottom:10px;border-bottom:1px solid var(--regla-2)}
+.hoja-pedido__cliente span{font:500 11px/1.9 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--tenue)}
+.hoja-pedido ul{list-style:none;margin:0;padding:6px 0}
+.hoja-pedido li{display:flex;justify-content:space-between;gap:10px;padding:6px 0;color:var(--tinta-2);font-size:15px}
+.hoja-pedido li b{font:500 15px var(--mono);color:var(--tinta)}
+.hoja-pedido__estado{padding-top:10px;border-top:1px solid var(--regla-2);font:500 11px/1.5 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:#9bd6c8}
+
+/* enlaces a páginas hermanas */
+.serv-relacionadas{margin-top:30px;color:var(--tenue);font-size:15.5px}
+
 /* contacto de la página */
 .serv-contacto .contacto__titulo{font-size:clamp(42px,7vw,110px)}
 
 @media (max-width:900px){
-  .senales,.entregables,.ejemplos{grid-template-columns:1fr}
+  .senales,.entregables,.ejemplos,.flujo-pedido{grid-template-columns:1fr}
 }
